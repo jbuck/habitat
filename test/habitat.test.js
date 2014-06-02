@@ -226,3 +226,13 @@ test('habitat.load crash regression: load a json file', function(t) {
   t.same(env('db').get('nestedMore'), 'stuff')
   t.end();
 });
+
+test('habitat issue #3', function(t) {
+  process.env['APP_REDIS_HOST'] = 'localhost';
+  process.env['APP_REDIS_PORT'] = 3000;
+
+  var env = new habitat();
+  t.same(env.get('APP_REDIS_HOST'), 'localhost');
+  t.same(env.get('APP_REDIS_PORT'), 3000);
+  t.end();
+});
